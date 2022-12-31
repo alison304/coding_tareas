@@ -1,23 +1,23 @@
 import './App.css';
-import CardPersona from './components/CardPersona';
+import PersonCard from './components/PersonCard';
 
 function App() {
   return (
     <div className="App">
       <header className='App-header'>
-        <CardPersona
-          name="Doe, Jane"
+        <PersonCard
+          firstName="Jane"
+          lastName="Doe"
+          age = "45"
           hairColor="Black"
-          friendlyName = "Jane Doe"
-          defaultAge = "45"
         />
 
 
-        <CardPersona
-          name="Smith, John"
+        <PersonCard
+          firstName="John"
+          lastName="Smith"
+          age = "88"          
           hairColor="Brown"
-          friendlyName = "John Smith"          
-          defaultAge = "88"          
         />
       </header>
     </div>
