@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 19px;
+}
+
+.form-group {
+  border: 2px solid grey;
+  width: 500px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: #dbdbdd;
+  color: grey;
+  padding-left: 13px;
+}
+
+.button {
+  width: 120px;
+  height: 30px;
+  background-color: rebeccapurple;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 10px;
+}
