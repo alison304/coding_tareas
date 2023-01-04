@@ -1,31 +1,56 @@
 import React, {useState} from 'react';
 
-const listWork =  [
-    'Reparar la puerta', 
-    'Hacer tareas de React',
-    'Estudiar Apis'
-];
+function Form() {
 
-export default function Form() {
-    const [selectItem, setSelectItem] = useState(listWork[0]);
-    const [isDoing, setIsDoing] = useState(false);
+    const [taskList, setTaskList] = useState([
+        ["Reparar la puerta", false],
+        ["Hacer tareas de React", true],
+        ["Estudiar Apis", false]
+    ]);
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        console.log('The ' + selectItem + 'is' + (isDoing ? '' : ' not') + ' do!');
+    const [taskName, setTaskName] = useState();
+
+
+    function addTask() {
+        setTaskList(current => [...current, [taskName, 0]]);
+        setTaskName("");
+    }    
+
+    function deleteTask(index) {
+        setTaskList(current => {
+            return current.filter((_, i) => i !== index)
+        });
     }
+
+    function checkTask(index) {
+        setTaskList(current => {
+            return current.map((element, position) => {
+                return position === index ? [element[0], !element[1]] : element;
+              })
+        });        
+    }    
+
     return (
-        <form onSubmit={handleSubmit}>
-            <select value={selectItem} onChange={e => setSelectItem(e.target.value)}>
-                {listWork.map((work, i) =>
-                    <option key={i} value={work}>{work}</option>
-                )}
-            </select>
-            <label>
-                <input type="checkbox" checked={isDoing} onChange={e => setIsDoing(e.target.checked)} />
-                Is doing?
-            </label>
-            <button>Agree</button>
+        <form>
+                <input placeholder="Agrega una tarea ..." type="text" value={taskName}  onChange={(e) => { setTaskName(e.target.value) }} />
+                <br/>                
+                <button type="button" onClick={addTask}>Add</button>                                        
+                <br/>                                
+                <br/>                                
+                    {taskList.map((task, index) =>
+                        <React.Fragment key={task[0]}>                        
+                            {
+                                task[1] ?
+                                <span style={{textDecoration: 'line-through'}}>{task[0]}</span> :
+                                <span>{task[0]}</span>
+                            } &nbsp;                            
+                            <input type="checkbox" checked={task[1]} onChange={() => checkTask(index)} /> &nbsp;
+                            <button onClick={() => deleteTask(index)}>Delete</button>                      
+                            <br/>
+                        </React.Fragment>                    
+                    )}
         </form>
     );
 }
+
+export default Form;
