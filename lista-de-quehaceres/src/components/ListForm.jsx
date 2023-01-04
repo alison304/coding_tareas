@@ -34,7 +34,7 @@ function Form() {
         <form>
                 <input placeholder="Agrega una tarea ..." type="text" value={taskName}  onChange={(e) => { setTaskName(e.target.value) }} />
                 <br/>                
-                <button type="button" onClick={addTask}>Add</button>                                        
+                <button type="button" className='btn-add' onClick={addTask}>Add</button>                                        
                 <br/>                                
                 <br/>                                
                     {taskList.map((task, index) =>
@@ -45,7 +45,7 @@ function Form() {
                                 <span>{task[0]}</span>
                             } &nbsp;                            
                             <input type="checkbox" checked={task[1]} onChange={() => checkTask(index)} /> &nbsp;
-                            <button onClick={() => deleteTask(index)}>Delete</button>                      
+                            <button className='btn-delete' onClick={() => deleteTask(index)}>Delete</button>                      
                             <br/>
                         </React.Fragment>                    
                     )}
