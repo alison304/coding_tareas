@@ -13,8 +13,10 @@ function App() {
         }}
       >Fetch Pokemon</button>
       <ul>
-        {responseData.map( item => <li key={item.name}>{item.name}</li>)}
-      </ul>  
+        {responseData.map( item => 
+          <li key={item.name}>{item.name}</li>
+        )}
+      </ul>
 
     </div>
   );
