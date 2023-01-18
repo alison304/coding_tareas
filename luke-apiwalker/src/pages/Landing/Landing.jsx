@@ -13,15 +13,17 @@ const Landing = () => {
     const [selected, setSelected] = useState("people");
     const [input, setInput] = useState("");
     const [data, setData] = useState();
+    const [error, setError] = useState(false);
 
     const getData = (e) => {
         e.preventDefault();
         axios.get(`https://swapi.dev/api/${selected}/${input}`, { Authorization: `Bearer ${process.env.REACT_APP_APITOKEN}`})
                 .then(response=>{
                     setData(response.data);
+                    setError(false);
                 })
                 .catch(error=>{
-                    setSelected("error");
+                    setError(true);
                 })                
     };
 
@@ -54,7 +56,7 @@ const Landing = () => {
             {selected === "vehicles" && data !== null ? <VehicleCard information={data} /> : ''}
             {selected === "species" && data !== null ? <SpecieCard information={data} /> : ''}
             {selected === "planets" && data !== null ? <PlanetCard information={data} /> : ''}
-            {selected === "error" ? <ErrorCard /> : ''}                        
+            {error ? <ErrorCard /> : ''}                        
         </div>
     )
 };
