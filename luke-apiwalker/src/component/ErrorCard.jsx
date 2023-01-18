@@ -6,7 +6,9 @@ const ErrorCard = () => {
         <div>
             {
                 <React.Fragment>
-                    <label style={{color:'blue'}}>Estos no son los droides que está buscando</label> 
+                    <br/>
+                    <label style={{fontWeight:'bold', color:'blue'}}>Estos no son los droides que está buscando</label>
+                    <br/><br/>
                     <picture>
                         <img src="/assets/images/obiwan.webp" alt="obiwan"/>
                     </picture>

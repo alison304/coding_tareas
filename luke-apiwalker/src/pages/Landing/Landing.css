@@ -1,0 +1,15 @@
+.btn-search {
+    background-color: #838383;
+    border-color: #838383;
+    color: white;
+    height: 25px;
+    width: 170px;
+    border-radius: 5px;
+}
+
+.select-form {
+    background-color: #171a4a;
+    color: white;
+    height: 25px;
+    width: 170px;
+}

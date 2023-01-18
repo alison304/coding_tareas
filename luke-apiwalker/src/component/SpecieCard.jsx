@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PeopleCard = (information) => {
+const SpecieCard = (information) => {
 
     if(information.information === undefined) {
         return (null);
@@ -14,20 +14,20 @@ const PeopleCard = (information) => {
                     <p style={{fontWeight:'bold', fontSize: '25px'}}>{ information.information.name }</p>
                     <br/>
                     <div>
-                        <label>Height: </label> 
-                        <label>{ information.information.height }</label>
+                        <label>Classification: </label> 
+                        <label>{ information.information.classification }</label>
                     </div>
                     <div>
-                        <label>Hair Color: </label>
-                        <label>{ information.information.hair_color }</label>
+                        <label>Designation: </label>
+                        <label>{ information.information.designation }</label>
                     </div>
                     <div>
-                        <label>Birth Year: </label>
-                        <label>{ information.information.birth_year }</label>    
+                        <label>Average Height: </label>
+                        <label>{ information.information.average_height }</label>    
                     </div>
                     <div>
-                        <label>Homeworld: </label>
-                        <label>{ information.information.homeworld }</label>
+                        <label>Average Lifespan: </label>
+                        <label>{ information.information.average_lifespan }</label>
                     </div>
                 </React.Fragment>
             }
@@ -35,4 +35,4 @@ const PeopleCard = (information) => {
     )
 };
 
-export default PeopleCard;
+export default SpecieCard;

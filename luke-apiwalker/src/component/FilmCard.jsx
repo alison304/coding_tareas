@@ -10,13 +10,21 @@ const FilmCard = (information) => {
         <div>
             {
                 <React.Fragment>
-                    <p style={{color:'blue'}}>{ information.information.title }</p>
+                    <br/>
+                    <p style={{fontWeight:'bold', fontSize: '25px'}}>{ information.information.title }</p>
+                    <br/>
                     <div>
-                        <label style={{color:'blue'}}>Director :</label> 
-                        <label style={{color:'blue'}}>{ information.information.director }</label>
+                        <label>Director: </label> 
+                        <label>{ information.information.director }</label>
                     </div>
-                    <p style={{color:'blue'}}>{ information.information.producer }</p>    
-                    <p style={{color:'blue'}}>{ information.information.release_date }</p>
+                    <div>
+                        <label>Producer: </label>
+                        <label>{ information.information.producer }</label>    
+                    </div>
+                    <div>
+                        <label>Release Date: </label>
+                        <label>{ information.information.release_date }</label>
+                    </div>
                 </React.Fragment>
             }
         </div>
