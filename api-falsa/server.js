@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 8080;
 
-import { faker } from '@faker-js/faker';
+const { faker } = require('@faker-js/faker');
 
 const usuario = () => {
     return {
@@ -21,11 +21,11 @@ const empresa = () => {
         name: faker.company.name(),
         address:
         {
-            street: faker.adress.street(),
-            city: faker.adress.city(),
-            state: faker.adress.state(),
-            postalCode: faker.adress.zipCode(),
-            country: faker.adress.country(),
+            street: faker.address.street(),
+            city: faker.address.city(),
+            state: faker.address.state(),
+            postalCode: faker.address.zipCode(),
+            country: faker.address.country(),
         }
     }
 }
