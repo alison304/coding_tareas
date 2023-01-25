@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  font-weight: bold;
+}
+
+.App h2 {
+  color: 	#9b088a;
+}
