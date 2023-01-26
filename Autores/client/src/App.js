@@ -1,14 +1,15 @@
-import { Routes, Route } from 'react-router-dom';
-import AuthorForm from './views/AuthorForm/AuthorForm';
 import './App.css';
+import AuthorForm from './views/AuthorForm/AuthorForm';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <h1>Favorite authors</h1>
-      <Routes>
-        <Route path='/' element={<AuthorForm/>}/>
-      </Routes>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<AuthorForm/>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
