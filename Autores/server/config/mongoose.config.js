@@ -1,8 +1,12 @@
-const { connect } = require('mongoose');
+const { mongoose , connect } = require('mongoose');
 
-connect('mongodb://localhost/authors_db', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+module.exports.connectMongo = () => {
+    connect('mongodb://localhost/authors_db', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
     .then(() => console.log('We are making some connections with the database!!!'))
     .catch(() => console.log('Ohhhh, something went wrong!'));
+}
+
+mongoose.set('strictQuery', false);
