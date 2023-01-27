@@ -2,7 +2,7 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
-const EditForm = () => {
+const EditAuthor = () => {
     return (
     <div className='EditForm'>
         <label>Home</label>
@@ -30,4 +30,4 @@ const EditForm = () => {
     )
 }
 
-export default EditForm
+export default EditAuthor
