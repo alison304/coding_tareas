@@ -18,7 +18,7 @@ module.exports.getAllAuthors = async (req, res) => {
 
 module.exports.createAuthor = async (req, res) => {
     try {
-        const newAuthor = await Author.create(req.body.author);
+        const newAuthor = await Author.create(req.body);
         res.json({
             message: 'Se creo de manera exitosa el nuevo autor',
             newAuthor,
