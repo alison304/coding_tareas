@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Button from 'react-bootstrap/Button';
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { createAuthor, getAuthor, editAuthor } from "../../services/author.service";
 
 const CreateAuthor = () => {
@@ -51,9 +51,9 @@ const CreateAuthor = () => {
 
     return (
         <div>
-            <Button onClick={() => navigate("/")} variant="info">Volver</Button>
-
-            <h1>Agregar Nuevo Autor</h1>
+            <h1>Favorite authors</h1>
+            <Link to="/">Home</Link>
+            <p>Add a new author:</p>
             <Formik
                 enableReinitialize
                 initialValues={author}
@@ -62,7 +62,9 @@ const CreateAuthor = () => {
             >
                 {({ errors, touched }) => (
                     <Form>
-                        <label htmlFor="fullName">Author</label>
+                        <br/>
+                        <label htmlFor="fullName">Name: </label>
+                        <br/>
                         <Field name="fullName" />
                         {errors.fullName && touched.fullName ? (
                             <div>{errors.fullName}</div>
@@ -70,7 +72,9 @@ const CreateAuthor = () => {
                         {errorsResponse?.fullName && (
                             <div>{errorsResponse.fullName.message}</div>
                         )}
-                        <button type="submit">Send</button>
+                        <br/><br/>
+                        <Button variant="primary" onClick={() => navigate("/")}>Cancel</Button>
+                        <Button variant="primary" type="submit">Submit</Button>
                     </Form>
                 )}
             </Formik>

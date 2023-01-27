@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { deleteAuthor, getAuthorList } from "../../services/author.service";
@@ -35,9 +35,10 @@ const ListAuthor = (props) => {
 
     return (
         <div>
-            <h1>Author List</h1>
-            <Button variant="info" onClick={() => navigate("/new")} >New Author</Button>
-            <Table striped bordered hover variant="dark">
+            <h1>Favorite authors</h1>
+            <Link to="/new">Add an author</Link>
+            <p>We have quotes by:</p>
+            <Table striped bordered hover>
                 <thead>
                     <tr>
                         <th>Author</th>
