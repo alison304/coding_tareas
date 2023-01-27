@@ -1,32 +1,82 @@
-import { useState } from "react"
-import { createAuthor } from "../../services/author.service";
+import React, { useEffect, useState } from "react";
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import Button from 'react-bootstrap/Button';
+import { useNavigate, useParams } from "react-router-dom";
+import { createAuthor, getAuthor, editAuthor } from "../../services/author.service";
 
-export default function CreateAuthor(props){
-    let [fullName, setFullName] = useState("");
+const CreateAuthor = () => {
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const [author, setAuthor] = useState({
+        fullName: ''
+    });
+    const [errorsResponse, setErrorsResponse] = useState();
 
-    let sendForm = (event) => {
-        event.preventDefault();
-        createAuthor({
-            fullName: fullName
-        }).then((response) => {
-            setFullName("");
-            props.callback(Math.random())
-        }).catch((err) =>{
-            console.log(err)
-            console.log("Fail");
-        })
-    }
+    const getAuthorFromService = async () => {
+        try {
+            const data = await getAuthor(id);
+            setAuthor(data.data.author);
 
-    return (<form onSubmit={sendForm}>
+        } catch(error) {
+            console.log("getAuthorFromService", error)
+            
+        };
+    };
+
+    useEffect(() => {
+        id && getAuthorFromService();
+    }, [id]);
+
+    const authorSchema = Yup.object().shape({
+        fullName: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Debe ingresar un nombre al estudiante')
+    });
+
+    const sendNewAuthor = async (values) => {
+        try {
+            console.log("sendNewAuthor", values);
+            id ? await editAuthor(id, values) : await createAuthor(values);
+            navigate("/");
+            
+        } catch (error) {
+            console.log("🚀 ~ file: StudentForm.js:61 ~ sendNewStudent ~ error", error.response.data.error)
+            setErrorsResponse(error.response.data.error.errors)
+        }
+
+
+    };
+
+    return (
         <div>
-            <label>Name</label>
-            <input 
-                type="text" 
-                value={fullName}  
-                onChange={(event) => {
-                    setFullName(event.target.value);
-                }}/>
+            <Button onClick={() => navigate("/")} variant="info">Volver</Button>
+
+            <h1>Agregar Nuevo Autor</h1>
+            <Formik
+                enableReinitialize
+                initialValues={author}
+                // validationSchema={studentSchema}
+                onSubmit={sendNewAuthor}
+            >
+                {({ errors, touched }) => (
+                    <Form>
+                        <label htmlFor="fullName">Author</label>
+                        <Field name="fullName" />
+                        {errors.fullName && touched.fullName ? (
+                            <div>{errors.fullName}</div>
+                        ) : null}
+                        {errorsResponse?.fullName && (
+                            <div>{errorsResponse.fullName.message}</div>
+                        )}
+                        <button type="submit">Send</button>
+                    </Form>
+                )}
+            </Formik>
         </div>
-        <button type="submit">Create</button>
-    </form>)
-}
+    )
+};
+
+export default CreateAuthor;
+

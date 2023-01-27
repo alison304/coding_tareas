@@ -2,10 +2,10 @@ const Author = require("../models/author.model");
 
 module.exports.getAllAuthors = async (req, res) => {
     try {
-        const authors = await Author.find();
+        const authorList = await Author.find();
         res.json({
             message: 'Se entregan de manera exitosa todos los autores',
-            authors,
+            authorList,
         });
         
     } catch (error) {

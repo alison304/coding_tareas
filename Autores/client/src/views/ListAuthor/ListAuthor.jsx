@@ -1,59 +1,69 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 import { deleteAuthor, getAuthorList } from "../../services/author.service";
-import { Link } from "react-router-dom";
 
-export default function ListAuthor(props){
-    const [authorList, setAuthorList] = useState([])
+const ListAuthor = (props) => {
+    const navigate = useNavigate();
+    const [authorList, setAuthorList] = useState([]);
 
-    const fetchAuthorList = ()=>{
-        getAuthorList()
-            .then((data)=> {
-                console.log(data);
-                setAuthorList(data.data.authorList);
-            })
-            .catch((err)=>{
-                console.log(err);
-            })
+    const getAuthorListFromService = async () => {
+        try {
+            const data = await getAuthorList();
+            console.log(data);
+            setAuthorList(data.data.authorList);
+        } catch (error) {
+            console.log("getAuthorListFromService", error);            
         }
+    };
 
-    useEffect(() =>{
-        fetchAuthorList();
-    }, [props.render]);
+    const removeAuthorFromService = async (id) => {
+        try {
+            await deleteAuthor(id);
+            const newAuthorList = authorList.filter(author => author._id !== id);
+            setAuthorList(newAuthorList);
+        } catch (error) {
+            console.log("removeStudentFromService", error);            
+        }
+    }
+
+    useEffect(() => {
+        getAuthorListFromService();
+    },[props.render]);
     
+
     return (
         <div>
-            <h1>All Authors</h1>
-            <table>
+            <h1>Author List</h1>
+            <Button variant="info" onClick={() => navigate("/new")} >New Author</Button>
+            <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
-                        <th>Nombre Autor</th>
-                        <th>Acciones</th>
+                        <th>Author</th>
+                        <th>Actions available</th>                        
                     </tr>
                 </thead>
                 <tbody>
-                {authorList.map((author, index)=> 
-                    <tr key={`${index}-row`}>
-                        <td key={`${index}-name`}>{author.name}</td>
-                        <td key={`${index}-action`}>
-                            <button>
-                                <Link state={{author: author}} to={author._id}>Detalles</Link>
-                            </button>
-                            <br />
-                            <button onClick={()=> {
-                                deleteAuthor(author._id)
-                                    .then((data) => {
-                                        fetchAuthorList();
-                                    })
-                                    .catch((err)=>{
-                                        console.log(err)
-                                    });
-                            }}>Eliminar</button>
-                        </td>
-                    </tr>
-                )}
+                    {
+                        authorList.length > 0 ? authorList.map((author, idx) => (
+                            <tr key={author._id}>
+                                <td>{author.fullName}</td>
+                                <td>
+                                    <Button variant="outline-info" onClick={() => navigate(`/edit/${author._id}`)} >Editar</Button>
+                                    <Button variant="outline-danger" onClick={() => removeAuthorFromService(author._id)} >Eliminar</Button>
+                                </td>
+                            </tr>
+                        )) : 
+                            <tr>
+                                <td colSpan={8}>No hay ningún autor inscrito</td>
+                            </tr>
+                    }
                 </tbody>
-            </table>
+            </Table>
         </div>
     )
+
 }
+
+export default ListAuthor;

@@ -1,11 +1,15 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import { Link, useNavigate } from 'react-router-dom';
 
 const EditAuthor = () => {
+    let navigate = useNavigate();
+    
     return (
     <div className='EditForm'>
-        <label>Home</label>
+        <h1>Favorite authors</h1>
+        <Link to="/">Home</Link>
         <h2>Edit this author</h2>
         <Table striped bordered hover>
         <thead>
@@ -17,7 +21,7 @@ const EditAuthor = () => {
             <tr>
             <input>Ada Lovelace</input>
             <td>
-                <Button variant="primary">Cancel</Button>
+                <Button variant="primary" onClick={() => navigate("/")}>Cancel</Button>
                 <Button variant="primary">Submit</Button>
             </td>
             </tr>
@@ -30,4 +34,4 @@ const EditAuthor = () => {
     )
 }
 
-export default EditAuthor
+export default EditAuthor;

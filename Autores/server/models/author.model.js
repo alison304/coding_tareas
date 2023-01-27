@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
 const authorSchema = new Schema({
-    Name: {
+    fullName: {
         type: String,
         required: [true, 'Debe ingresar un nombre'],
         minlength: [2, 'No puede tener menos de 3 caracteres']
