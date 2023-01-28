@@ -45,8 +45,6 @@ const CreateAuthor = () => {
             console.log("🚀 ~ file: StudentForm.js:61 ~ sendNewStudent ~ error", error.response.data.error)
             setErrorsResponse(error.response.data.error.errors)
         }
-
-
     };
 
     return (

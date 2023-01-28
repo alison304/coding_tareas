@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { deleteAuthor, getAuthorList } from "../../services/author.service";
+import "./style.css"
 
 const ListAuthor = (props) => {
     const navigate = useNavigate();
@@ -37,7 +38,7 @@ const ListAuthor = (props) => {
         <div>
             <h1>Favorite authors</h1>
             <Link to="/new">Add an author</Link>
-            <p>We have quotes by:</p>
+            <p className="purple">We have quotes by:</p>
             <Table striped bordered hover>
                 <thead>
                     <tr>
