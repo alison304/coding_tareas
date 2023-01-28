@@ -30,7 +30,7 @@ const AuthorForm = () => {
 
     const authorSchema = Yup.object().shape({
         fullName: Yup.string()
-            .min(2, 'Too Short!')
+            .min(4, 'Too Short!')
             .max(50, 'Too Long!')
             .required('Debe ingresar un nombre al estudiante')
     });
@@ -55,7 +55,7 @@ const AuthorForm = () => {
             <Formik
                 enableReinitialize
                 initialValues={author}
-                // validationSchema={studentSchema}
+                validationSchema={authorSchema}
                 onSubmit={sendNewAuthor}
             >
                 {({ errors, touched }) => (
