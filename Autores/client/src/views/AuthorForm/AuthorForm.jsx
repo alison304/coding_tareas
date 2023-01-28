@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { createAuthor, getAuthor, editAuthor } from "../../services/author.service";
 
-const CreateAuthor = () => {
+const AuthorForm = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [author, setAuthor] = useState({
@@ -80,5 +80,5 @@ const CreateAuthor = () => {
     )
 };
 
-export default CreateAuthor;
+export default AuthorForm;
 

@@ -1,7 +1,6 @@
 import './App.css';
-import ListAuthor from './views/ListAuthor/ListAuthor';
-import CreateAuthor from './views/CreateAuthor/CreateAuthor';
-import EditAuthor from './views/EditAuthor/EditAuthor';
+import AuthorList from './views/AuthorList/AuthorList';
+import AuthorForm from './views/AuthorForm/AuthorForm';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -9,9 +8,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<ListAuthor/>}/>
-          <Route path='/new' element={<CreateAuthor/>}/>          
-          <Route path='/edit/:id' element={<EditAuthor/>}/>                    
+          <Route path='/' element={<AuthorList/>}/>
+          <Route path='/new' element={<AuthorForm/>}/>          
+          <Route path='/edit/:id' element={<AuthorForm/>}/>                    
         </Routes>
       </BrowserRouter>
     </div>

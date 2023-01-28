@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { deleteAuthor, getAuthorList } from "../../services/author.service";
 import "./style.css"
 
-const ListAuthor = (props) => {
+const AuthorList = (props) => {
     const navigate = useNavigate();
     const [authorList, setAuthorList] = useState([]);
 
@@ -68,4 +68,4 @@ const ListAuthor = (props) => {
 
 }
 
-export default ListAuthor;
+export default AuthorList;
