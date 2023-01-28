@@ -36,7 +36,7 @@ module.exports.updateAuthor = async (req, res) => {
     try {
         const { params, body } = req;
         const { id } = params;
-        const updatedAuthor = await Author.findByIdAndUpdate(id, body.author, { new: true });
+        const updatedAuthor = await Author.findByIdAndUpdate(id, body, { new: true });
         res.json({
             message: 'Se actualiza de manera exitosa la información',
             updatedAuthor,
